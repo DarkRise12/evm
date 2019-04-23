@@ -1,8 +1,11 @@
 #include "mySimpleComputer.h"
 
+int sc_memory[SIZE];
+int sc_register;
+
 int sc_memoryInit()
 {
-	int i = 0;
+	int i;
 	for(i = 0; i < SIZE; i++)
 	{
 		sc_memory[i] = 0;
@@ -75,7 +78,7 @@ int sc_memoryLoad(char *filename)
 int sc_regInit()
 {
 	sc_register = 0x0;
-	printf("reg initialized")
+	printf("reg initialized");
 	return 0;
 }
 
@@ -114,6 +117,7 @@ int sc_regGet(int reg, int *value)
     }
     else
     {
+		sc_regSet(IN)
 		errorHandler(5);
 	}
 	
@@ -122,7 +126,6 @@ int sc_regGet(int reg, int *value)
 
 int sc_commandEncode(int command, int operand, int *value)
 {
-    //if (!(command == 0xa) || !(command == 0xb) || !(command == 0x15) || !(command == 0x1e) || operand < 0 || operand > 127 || !(command == 0x1f) || !(command == 0x20) || !(command == 0x21))
 	if (!((command == 0xa) || (command == 0xb) || (command == 0x15) || (command == 0x1e) || (command == 0x1f) || (command == 0x20) || (command == 0x21)) || operand < 0 || operand > 127 )
     {
 		sc_regSet(COMMAND_ERROR, 1);
@@ -154,4 +157,37 @@ int sc_commandDecode(int value, int *command, int *operand)
    		*command = (int) (value >> 7);
 	}
     return 0;
+}
+
+void errorHandler(int Error_Number)
+{
+	printf("Error: (code: %d): ",Error_Number);
+	switch (Error_Number)
+	{
+		case 1:
+			printf("Out of memory");
+			break;
+		case 2:
+			printf("Cannot save RAM");
+			break;
+		case 3:
+			printf("Cannot load a RAM");
+			break;
+		case 4:
+			printf("Wrong value");
+			break;
+		case 5:
+			printf("Wrong register");
+			break;
+		case 6:
+			printf("Wrong command");
+			break;
+		case 7:
+			printf("Wrong operand");
+			break;
+		case 8:
+			printf("Wrong command\operand");
+			break;
+	}
+	return 0;
 }
