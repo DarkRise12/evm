@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-int main()
+main()
 {
 	sc_memoryInit();
 	sc_regInit();

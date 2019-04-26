@@ -1,10 +1,8 @@
-#ifndef simplcomp_h
-#define simplcomp_h
+#pragma once
 
 #include <stdint.h>
 #include <stdio.h>
 #include <memory.h>
-#include <math.h>
 #include <stdlib.h>
 
 #define SIZE 100
@@ -29,4 +27,4 @@ int sc_regGet(int, int*);
 int sc_commandEncode(int, int, int*);
 int sc_commandDecode(int, int*, int*);
 
-#endif
+
