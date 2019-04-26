@@ -1,0 +1,7 @@
+*.o
+*.c~
+*.h~
+/binary
+/Makefile~
+*.bin
+/.gitignore~
