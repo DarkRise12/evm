@@ -117,7 +117,7 @@ int sc_regGet(int reg, int *value)
     }
     else
     {
-		sc_regSet(IN)
+		sc_regSet(ZERO_ERR, 1);
 		errorHandler(5);
 	}
 	
