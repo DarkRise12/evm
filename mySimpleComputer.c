@@ -1,4 +1,4 @@
-#include "mySimpleComputer.h"
+  #include "mySimpleComputer.h"
 
 int sc_memory[SIZE];
 int sc_register;
@@ -139,24 +139,26 @@ int sc_commandEncode(int command, int operand, int *value)
     return 0;
 }
 
-int sc_commandDecode(int value, int *command, int *operand)
+int sc_commandDecode(int value, int *command, int *operand) 
 {
-    if (value >> 14 != 0x0)
-    {
-        sc_regSet(COMMAND_ERROR, 1);
-        errorHandler(6);
-    }
-    else if (!((*command == 0xa) || (*command == 0xb) || (*command == 0x15) || (*command == 0x1e) || (*command == 0x1f) || (*command == 0x20) || (*command == 0x21)) || *operand < 0 || *operand > 127 )
-    {
+	if (command < 0x10 ||
+		(command > 0x11 && command < 0x20) ||
+		(command > 0x21 && command < 0x30) ||
+		(command > 0x33 && command < 0x40) ||
+		(command > 0x43 && command < 0x51) ||
+		command > 0x76) {
 		sc_regSet(COMMAND_ERROR, 1);
-        errorHandler(6);
-    }
-	else
-	{
-		*operand = (int) (value & 0x7F);
-   		*command = (int) (value >> 7);
+		Er_Handler(6);
+		
 	}
-    return 0;
+	if (operand > 0x7F || operand < 0x0) {
+		sc_regSet(COMMAND_ERROR, 1);
+		Er_Handler(7);
+		
+	}
+	*value = (command << 7) | operand;
+	printf("\n *Command encode* \n");
+	return 0;
 }
 
 void errorHandler(int Error_Number)
