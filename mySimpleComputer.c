@@ -141,21 +141,7 @@ int sc_commandEncode(int command, int operand, int *value)
 
 int sc_commandDecode(int value, int *command, int *operand) 
 {
-	if (command < 0x10 ||
-		(command > 0x11 && command < 0x20) ||
-		(command > 0x21 && command < 0x30) ||
-		(command > 0x33 && command < 0x40) ||
-		(command > 0x43 && command < 0x51) ||
-		command > 0x76) {
-		sc_regSet(COMMAND_ERROR, 1);
-		errorHandler(6);
-		return 1;
-	}
-	if (operand > 0x7F || operand < 0x0) {
-		sc_regSet(COMMAND_ERROR, 1);
-		errorHandler(7);
-		return 1;
-	}
+	
 	*operand = (int)(value & 0x7F);
 	*command = (int)(value >> 7);
 	printf("\n *Command encode* \n");
