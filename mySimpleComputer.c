@@ -130,12 +130,14 @@ int sc_commandEncode(int command, int operand, int *value)
     {
 		sc_regSet(COMMAND_ERROR, 1);
         errorHandler(6);
+        return 0;
     }
     int temp = 0x00;
     temp |= command;
     temp <<= 7;
     temp |= operand;
     *value = temp;
+    printf("\n Command encoded \n");
     return 0;
 }
 
@@ -144,7 +146,7 @@ int sc_commandDecode(int value, int *command, int *operand)
 	
 	*operand = (int)(value & 0x7F);
 	*command = (int)(value >> 7);
-	printf("\n *Command encode* \n");
+	printf("\n Command decoded \n");
 	return 0;
 }
 

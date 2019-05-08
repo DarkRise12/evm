@@ -23,7 +23,7 @@ main()
 	sc_regGet(1, &val);
 	printf("\n flag value - %d\n", val);
 
-	sc_commandEncode(0x56, 96, &val);
+	sc_commandEncode(0x21, 0x28, &val);
 	int command;
 	int oper;
 	sc_commandDecode(val, &command, &oper);
