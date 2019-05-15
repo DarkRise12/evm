@@ -8,9 +8,9 @@
 #define SIZE 100
 #define OVERFLOW 1
 #define ZERO_ERR 2
-#define OUT_OF_MEM 3
+#define OUT_OF_MEM 0b00000001
 #define FREQ_ERR 4
-#define COMMAND_ERROR 5
+#define COMMAND_ERROR 0b00000100
 
 int ram[SIZE];
 int flags;

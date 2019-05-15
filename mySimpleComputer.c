@@ -20,13 +20,14 @@ int sc_memorySet(int address, int value)
 	{
 		sc_regSet(OUT_OF_MEM, 1);
 		errorHandler(1);
+		return ;
 	}
 	else
 	{
 		sc_memory[address] = value;
+		printf("memory setled");
 	}
-	printf("memory setled");
-	return 0;
+	//return 0;
 }
 
 int sc_memoryGet(int address, int *value)
@@ -89,12 +90,12 @@ int sc_regSet(int reg, int value)
 		if (value == 0)
 		{
 			sc_register &= ~reg;
-			return 0;
+			//return 0;
 		}
 		else if (value == 1)
 		{
 			sc_register |= reg;
-			return 0;
+			//return 0;
 		}
 		else
 		{
