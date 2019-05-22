@@ -1,10 +1,13 @@
 #include "mySimpleComputer.h"
-
+#include "myTerm.h"
 #include <stdio.h>
 
 main()
 {
-	sc_memoryInit();
+	unsigned int x = 0, y = 0, d, R = 2, C = 1;
+	unsigned int *row = &x, *col = &y;
+	int cell;
+	/*sc_memoryInit();
 	printf("\n");
 	sc_regInit();
 	printf("\n");
@@ -28,5 +31,20 @@ main()
 	int oper;
 	sc_commandDecode(val, &command, &oper);
 	printf("\n command - %x \n", command);
-	printf("\n operand - %x \n", oper);
+	printf("\n operand - %x \n", oper);*/
+	
+	mt_clrscr();
+	d = mt_getscreensize(row, col);	
+    mt_gotoXY(5, 10);
+    mt_setfgcolor(red);
+    mt_setgbcolor(black);
+    write(1, "Nikita", 6);
+    mt_gotoXY(6, 8);
+    mt_setfgcolor(green);
+    mt_setgbcolor(gray);
+    write(1, "IP-713", 6);
+    mt_gotoXY(10, 1);
+    mt_setfgcolor(9);
+    mt_setgbcolor(9);
+    
 }
